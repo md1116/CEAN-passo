@@ -1,4 +1,4 @@
-# Personal modifications -
+# Updated: Couchbase, ExpressJS, AngularJS, Node.js, Passport, OAUTH (CEAN-passo) Stack Example
 
 Addition of oAuth via passport-http-oauth handles the /login requests and valid users are stored in couchbase within the 'users' document. Page authentication
 can be handled through requesting req.user in the app router, if present, the user is logged in.
@@ -10,7 +10,7 @@ to the consumer, then after the password was used to log in via oauth, a new pas
 // todo - create a profile section for users
 // todo - note - the config file has been updated to handle more then the original CEAN examle, including server port, couchbase information, some login routing data
 
-# Couchbase, ExpressJS, AngularJS, Node.js (CEAN) Stack Example
+# Original Couchbase, ExpressJS, AngularJS, Node.js (CEAN) Stack Example
 
 A very basic example of a CEAN stack application that makes use of Couchbase Server's N1QL query language.
 The full stack application separates the Node.js, ExpressJS and Couchbase Server into the back-end and leaves AngularJS, HTML, and CSS as the front-end that requests data from the back-end and presents it to the user.
@@ -66,6 +66,8 @@ Your database is now ready for use.
 
 With all dependencies installed and Couchbase Server configured, run the following from your Command Prompt or Terminal:
 
+Or, for best results, just use PHPStorm or a similar IDE to run node apps, as debugging is way easier.
+
 ```
 node app.js
 ```
@@ -81,3 +83,7 @@ ExpressJS - [http://www.expressjs.com](http://www.expressjs.com)
 AngularJS - [http://www.angularjs.org](http://www.angularjs.org)
 
 Node.js - [http://www.nodejs.org](http://www.nodejs.org)
+
+Passport - [http://passportjs.org](http://passportjs.org)
+
+Passport -HTTP - OAUTH [https://github.com/jaredhanson/passport-http-oauth](https://github.com/jaredhanson/passport-http-oauth)
