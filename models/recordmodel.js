@@ -55,7 +55,17 @@ RecordModel.getByDocumentId = function(documentId, callback) {
  */
 RecordModel.getAllUsr = function(callback) {
 
-    var query = ViewQuery.from('usr','usr'); // example is showing ViewQuery.from('_design/"usr"', 'view: "usr"')
+    // example is showing ViewQuery.from('_design/"usr"', 'view: "usr"')
+    /**
+     * setup a view in couchbase with the following
+     *
+     * function (doc, meta) {
+     *   if (meta.id.indexOf('usr-') == 0){
+     *     emit(meta.id, doc);
+     *   }
+     * }
+     */
+    var query = ViewQuery.from('usr','usr');
     db.query(query, function(error, result) {
         if(error) {
             return callback(error, null);

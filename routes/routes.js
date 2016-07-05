@@ -17,12 +17,10 @@ var appRouter = function(app) {
      */
     
     passport.serializeUser(function(user, done) {
-        console.log('serialize User Id: '); console.log(user.id);
         done(null, user.id);
     });
 
     passport.deserializeUser(function(id, done) {
-        console.log('deserializeUser runs'); console.log(id);
         db.users.findById(id, function(err, user) {
             if (err) { return done(err); }
             done(err, user);
@@ -47,8 +45,6 @@ var appRouter = function(app) {
     });
 
     app.get('/home', function(req, res) {
-        console.log('home loads');
-        console.log(req.user);
         if (!req.user) {
             return res.render("login", {title: 'Login First'});
         }
@@ -56,7 +52,6 @@ var appRouter = function(app) {
     });
 
     app.get('/login', function(req, res) {
-        console.log(req.user);
         if (!req.user) {
             return res.render("login", {title: 'Login First'});
         }
@@ -64,7 +59,6 @@ var appRouter = function(app) {
     });
 
     app.post(config.login.loc, function(req, res, next) {
-        console.log('login post hit');
         passport.authenticate('consumer', function(err, user) {
             if (err) { console.log(err); }
             if (!user){
@@ -83,7 +77,7 @@ var appRouter = function(app) {
         req.session.destroy(function (err) {
             if (err) { return next(err); }
             // The response should indicate that the user is no longer authenticated.
-            return res.render('login', { title: 'logged out' });
+            return res.render('login', { title: 'You Have Been Logged Out.' });
         });
     });
 
@@ -92,7 +86,6 @@ var appRouter = function(app) {
     });
 
     app.post('/register', function(req, res, next) {
-        console.log('register post hit');
         db.users.registerUser(JSON.stringify(req.body), function(error, result){
             if (error){
                 return res.send(result);

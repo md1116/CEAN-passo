@@ -9,7 +9,6 @@ var localCrypto = require("./../auth/local-crypto");
  * @param cb
  */
 exports.findById = function(id, cb) {
-    console.log(id + ' hit from within the findById function');
     app.bucket.get('users', function(err, result) {
         if (err) throw err;
         var users = result.value.users;
@@ -63,7 +62,6 @@ exports.registerUser = function(user, cb) {
         user.password = localCrypto.encrypt(user.password);
         users.push(user);
         users = {"users":users};
-        console.log(users);
         app.bucket.upsert('users', users, function(err, result){
             if (err) { return cb(true, "Problem with saving the users to couchbase."); }
             return cb(false, "updated")
